@@ -7,26 +7,16 @@
 1. **Fork 本仓库** 到你的 GitHub 账号。
 2. 进入你的仓库，点击 **Settings** -> **Secrets and variables** -> **Actions**。
 3. 点击 **New repository secret**，添加一个名为 `USERS_JSON` 的 Secret。
-格式
-```
-   [
-       {
-           "username": "myemail@gmail.com",
-           "password": "mypassword123"
-       }
-   ]
-```
 4. **Value** 的格式必须是 JSON 数组（请尽量压缩为一行）：
    ```json
-   [{"username": "your_email@example.com", "password": "your_password"}, {"username": "another@example.com", "password": "pwd"}]
+   [{"username": "your_email@example.com", "password": "your_password"}]
    ```
 5. **(可选) 配置代理**:
 
   支持两种代理方式：
 
   **全协议代理 (推荐)**
-  添加名为 `PROXY_URL` 的 Secret，支持 vmess、vless、hy2、tuic、socks5 等所有主流协议。
-  脚本会自动下载 sing-box 并在本地启动 HTTP 代理，无需手动配置。
+  添加名为 `PROXY_NODE` 的 Secret，支持 vmess、vless、hy2、tuic、socks5 等所有主流协议。
   - **格式示例**:
     - vmess: `vmess://base64EncodedJSON`
     - vless: `vless://uuid@host:port?security=tls&type=ws&...#name`
