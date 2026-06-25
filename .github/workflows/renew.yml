@@ -32,7 +32,8 @@ jobs:
       run: |
         if [ -z "$NODE_LINK" ]; then
           echo "[INFO] 未配置代理，直连模式"
-          exit 0
+          echo "USE_PROXY=false" >> $GITHUB_ENV
+          return
         fi
 
         wget -q https://github.com/oyz6/action/releases/download/proxy/Xray-linux-64.zip
@@ -315,7 +316,7 @@ jobs:
         for i in 1 2 3 4 5; do
           if curl -x socks5://127.0.0.1:1080 -s --max-time 15 https://api.ipify.org > /dev/null 2>&1; then
             echo "[INFO] ✅ 代理连接成功"
-            echo "PROXY_SERVER=socks5://127.0.0.1:1080" >> $GITHUB_ENV
+            echo "USE_PROXY=true" >> $GITHUB_ENV
             exit 0
           fi
           echo "[WARN] 尝试 $i/5..."
